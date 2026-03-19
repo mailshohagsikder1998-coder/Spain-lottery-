@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<title>ভাগের চাকায় সালামী নির্ধারণ</title>
+
+<style>
+body {
+    text-align: center;
+    font-family: Arial;
+    background: #111;
+    color: white;
+}
+
+h1 {
+    margin-top: 20px;
+}
+
+/* Wheel */
+#wheel {
+    margin: 40px auto;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 8px solid #fff;
+    position: relative;
+
+    background: conic-gradient(
+        #ff0000 0% 16.6%,
+        #ff9900 16.6% 33.2%,
+        #ffff00 33.2% 49.8%,
+        #00ff00 49.8% 66.4%,
+        #00ccff 66.4% 83%,
+        #cc00ff 83% 100%
+    );
+}
+
+/* Arrow pointer */
+#arrow {
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 30px solid white;
+    margin: auto;
+}
+
+/* Button */
+button {
+    padding: 12px 25px;
+    font-size: 18px;
+    background: gold;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Result */
+#result {
+    margin-top: 20px;
+    font-size: 22px;
+    color: gold;
+}
+
+img {
+    margin-top: 20px;
+    width: 250px;
+    display: none;
+}
+</style>
+</head>
+
+<body>
+
+<h1>ভাগের চাকায় সালামী নির্ধারণ</h1>
+
+<div id="arrow"></div>
+<div id="wheel"></div>
+
+<br>
+<button onclick="spin()">SPIN</button>
+
+<div id="result"></div>
+
+<img id="duaImage" src="your-image.jpg">
+
+<script>
+let spinning = false;
+
+function spin() {
+    if (spinning) return;
+
+    spinning = true;
+
+    const wheel = document.getElementById("wheel");
+    const result = document.getElementById("result");
+    const image = document.getElementById("duaImage");
+
+    result.innerHTML = "";
+    image.style.display = "none";
+
+    let deg = 3600 + Math.random() * 1000;
+
+    wheel.style.transition = "transform 4s ease-out";
+    wheel.style.transform = "rotate(" + deg + "deg)";
+
+    setTimeout(() => {
+        result.innerHTML = "🤲 আপনি পেয়েছেন: Dua";
+        image.style.display = "block";
+        spinning = false;
+    }, 4000);
+}
+</script>
+
+</body>
+</html>
